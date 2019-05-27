@@ -2,10 +2,10 @@
 #define ADBMENU_LIST_PACKAGES
 
 #include "../menu.h"
-class AdbMenuListPackages :public Menu
+class AdbMenuListApps :public Menu
 {
 public:
-	AdbMenuListPackages();
+	AdbMenuListApps();
 	void Commands(int);
 };
 

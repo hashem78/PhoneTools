@@ -33,6 +33,9 @@
     <ClCompile Include="src\adbinstallmenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\adbmenu_list_apps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\checkdependencies.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\include\menus\adbmenu_install_apk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\menus\adbmenu_list_apps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

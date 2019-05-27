@@ -10,7 +10,7 @@ int state = checkd();
 std::string depPath = "cd dependencies & ";
 AdbMenu::AdbMenu()
 {
-	elements = { "Adb push","Adb pull","Install app","UnInstall App" };
+	elements = { "Adb push","Adb pull","Install app","UnInstall App","List apps" };
 }
 void AdbMenu::Commands(int x)
 {
@@ -27,6 +27,9 @@ void AdbMenu::Commands(int x)
 		break;
 	case 4:
 		adbuninstall();
+		break;
+	case 5:
+		adblistapps();
 		break;
 	}
 }
@@ -144,5 +147,26 @@ int AdbMenu::adbuninstall()
 
 int AdbMenu::adblistapps()
 {
-	
+	AdbMenuListApps M;
+	printMenu(M);
+	return 0;
+}
+int AdbMenu::adbshowuserapps()
+{
+	if (state == 0)
+	{
+
+		system((depPath+ "adb shell pm list packages -3 \"| cut -f 2 -d \":\"").c_str());
+		return 0;
+	}
+	return -1;
+}
+int AdbMenu::adbshowsystemapps()
+{
+	return 0;
+}
+int AdbMenu::adbshowallapps()
+{
+	system((depPath + "adb shell pm list packages").c_str());
+	return 0;
 }
