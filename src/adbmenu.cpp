@@ -163,10 +163,11 @@ int AdbMenu::adbshowuserapps()
 }
 int AdbMenu::adbshowsystemapps()
 {
+	system((depPath + "adb shell pm list packages -s \"| cut -f 2 -d \":\"").c_str());
 	return 0;
 }
 int AdbMenu::adbshowallapps()
 {
-	system((depPath + "adb shell pm list packages").c_str());
+	system((depPath + "adb shell pm list packages \"| cut -f 2 -d \":\"").c_str());
 	return 0;
 }
