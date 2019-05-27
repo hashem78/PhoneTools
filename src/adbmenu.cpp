@@ -50,8 +50,24 @@ int AdbMenu::adbpush()
 }
 int AdbMenu::adbpull()
 {
-	std::cout << "life is hard 2" << std::endl;
-	return 0;
+	system("CLS");
+
+	std::string path_on_pc;
+	std::string path_on_device;
+
+	std::cout << "Please enter path on device: ";
+	std::cin >> path_on_device;
+	std::cout << '\n';
+	std::cout << "Please enter path on PC: ";
+	std::cin >> path_on_pc;
+	std::cout << '\n';
+
+	if (state == 0)
+	{
+		system((depPath + "adb pull " + path_on_device + " " + path_on_pc).c_str());
+		return 0;
+	}
+	return -1;
 }
 int AdbMenu::adbinstall()
 {
