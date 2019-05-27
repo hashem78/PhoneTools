@@ -1,7 +1,7 @@
 #include "include/menus/adbmenu_list_apps.h"
 #include "include/menus/adbmenu.h"
 
-AdbMenuListApps::AdbMenuListApps()
+AdbMenuListApps::AdbMenuListPackages()
 {
 	elements = {"Show user packages","Show system packages","Show all packages"};
 }
