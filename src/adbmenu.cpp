@@ -163,11 +163,19 @@ int AdbMenu::adbshowuserapps()
 }
 int AdbMenu::adbshowsystemapps()
 {
-	system((depPath + "adb shell pm list packages -s \"| cut -f 2 -d \":\"").c_str());
-	return 0;
+	if (state == 0)
+	{
+		system((depPath + "adb shell pm list packages -s \"| cut -f 2 -d \":\"").c_str());
+		return 0;
+	}
+	return -1;
 }
 int AdbMenu::adbshowallapps()
 {
-	system((depPath + "adb shell pm list packages \"| cut -f 2 -d \":\"").c_str());
-	return 0;
+	if (state == 0)
+	{
+		system((depPath + "adb shell pm list packages \"| cut -f 2 -d \":\"").c_str());
+		return 0;
+	}
+	return -1;
 }
