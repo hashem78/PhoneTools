@@ -1,7 +1,7 @@
 #include "include/menus/adbmenu.h"
 #include "include/menus/adbmenu_install_apk.h"
 #include "include/menus/adbmenu_list_apps.h"
-#include"include/checkdependencies.h"
+#include "include/checkdependencies.h"
 #include <iostream>
 #include <filesystem>
 #include <fstream>
