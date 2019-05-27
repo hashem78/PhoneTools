@@ -12,6 +12,8 @@ public:
 
 	int adbpush();
 	int adbpull();
+
+	int adblistpackages();
 	int adbinstall();
 	int adbinstallbatch();
 	int adbinstallsingle();
