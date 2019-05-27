@@ -152,6 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\adbinstallmenu.cpp" />
     <ClCompile Include="src\adbmenu.cpp" />
     <ClCompile Include="src\checkdependencies.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -161,6 +162,7 @@
   <ItemGroup>
     <ClInclude Include="src\include\menus\adbmenu.h" />
     <ClInclude Include="src\include\checkdependencies.h" />
+    <ClInclude Include="src\include\menus\adbmenu_install_apk.h" />
     <ClInclude Include="src\include\menus\mainmenu.h" />
     <ClInclude Include="src\include\menu.h" />
   </ItemGroup>

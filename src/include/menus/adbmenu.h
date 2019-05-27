@@ -14,5 +14,6 @@ public:
 	int adbpull();
 	int adbinstall();
 	int adbuninstall();
+	int adbinstallbatch();
 };
 #endif
