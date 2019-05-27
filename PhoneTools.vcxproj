@@ -156,6 +156,7 @@
     <ClCompile Include="src\adbmenu.cpp" />
     <ClCompile Include="src\adbmenu_list_apps.cpp" />
     <ClCompile Include="src\checkdependencies.cpp" />
+    <ClCompile Include="src\adbmenu_reboot_options.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mainmenu.cpp" />
     <ClCompile Include="src\menu.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="src\include\checkdependencies.h" />
     <ClInclude Include="src\include\menus\adbmenu_install_apk.h" />
     <ClInclude Include="src\include\menus\adbmenu_list_apps.h" />
+    <ClInclude Include="src\include\menus\adbmenu_reboot_options.h" />
     <ClInclude Include="src\include\menus\mainmenu.h" />
     <ClInclude Include="src\include\menu.h" />
   </ItemGroup>

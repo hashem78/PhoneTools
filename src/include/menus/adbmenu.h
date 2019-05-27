@@ -18,7 +18,12 @@ public:
 	int adbshowuserapps();
 	int adbshowsystemapps();
 	int adbshowallapps();
+	int adbreboot();
+	int adbsoftreboot();
+	int adbrebootrecovery();
+	int adbrebootbootloader();
 
+	int adbrebootoptions();//menu
 	int adblistapps();//menu
 	int adbinstall();//menu
 

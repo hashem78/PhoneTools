@@ -36,6 +36,9 @@
     <ClCompile Include="src\adbmenu_list_apps.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\adbmenu_reboot_options.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\checkdependencies.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\include\menus\adbmenu_list_apps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\menus\adbmenu_reboot_options.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

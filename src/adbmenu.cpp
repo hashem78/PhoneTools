@@ -1,6 +1,7 @@
 #include "include/menus/adbmenu.h"
 #include "include/menus/adbmenu_install_apk.h"
 #include "include/menus/adbmenu_list_apps.h"
+#include "include/menus/adbmenu_reboot_options.h"
 #include "include/checkdependencies.h"
 #include <iostream>
 #include <filesystem>
@@ -10,7 +11,7 @@ int state = checkd();
 std::string depPath = "cd dependencies & ";
 AdbMenu::AdbMenu()
 {
-	elements = { "Adb push","Adb pull","Install app","UnInstall App","List apps" };
+	elements = { "Adb push","Adb pull","Install app","Uninstall App","List apps","Reboot options" };
 }
 void AdbMenu::Commands(int x)
 {
@@ -28,8 +29,11 @@ void AdbMenu::Commands(int x)
 	case 4:
 		adbuninstall();
 		break;
-	case 5:
+	case 6:
 		adblistapps();
+		break;
+	case 7:
+		adbrebootoptions();
 		break;
 	}
 }
@@ -177,5 +181,52 @@ int AdbMenu::adbshowallapps()
 		system((depPath + "adb shell pm list packages \"| cut -f 2 -d \":\"").c_str());
 		return 0;
 	}
+	return -1;
+}
+int AdbMenu::adbrebootoptions()
+{
+	AdbMenuRebootOptions M;
+	printMenu(M);
+
+	return 0;
+}
+int AdbMenu::adbreboot()
+{
+	if (state == 0)
+	{
+		system((depPath + "adb reboot").c_str());
+		return 0;
+	}
+
+	return -1;
+}
+int AdbMenu::adbsoftreboot()
+{
+	if (state == 0)
+	{
+		system((depPath + "adb reboot").c_str());
+		return 0;
+	}
+
+	return -1;
+}
+int AdbMenu::adbrebootrecovery()
+{
+	if (state == 0)
+	{
+		system((depPath + "adb reboot recovery").c_str());
+		return 0;
+	}
+
+	return -1;
+}
+int AdbMenu::adbrebootbootloader()
+{
+	if (state == 0)
+	{
+		system((depPath + "adb reboot booloader").c_str());
+		return 0;
+	}
+
 	return -1;
 }
