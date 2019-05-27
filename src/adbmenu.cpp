@@ -3,6 +3,7 @@
 #include"include/checkdependencies.h"
 #include <iostream>
 #include <filesystem>
+#include <fstream>
 
 int state = checkd();
 std::string depPath = "cd dependencies & ";
@@ -45,7 +46,7 @@ int AdbMenu::adbpush()
 
 	if (state == 0)
 	{
-		system((depPath + "adb push " + path_on_pc + " " +path_on_device).c_str());
+		system((depPath + "adb push " + path_on_pc + " " + path_on_device).c_str());
 		return 0;
 	}
 	return -1;
@@ -109,8 +110,8 @@ int AdbMenu::adbinstallsingle()
 		std::cin >> path_on_pc;
 		std::cout << '\n';
 
-		system((depPath + c +path_on_pc).c_str());
-	
+		system((depPath + c + path_on_pc).c_str());
+
 
 		return 0;
 	}
@@ -120,6 +121,22 @@ int AdbMenu::adbinstallsingle()
 }
 int AdbMenu::adbuninstall()
 {
-	std::cout << "life is hard 4" << std::endl;
-	return 0;
+	if (state == 0) {
+		system("CLS");
+		std::string appname;
+		std::string com;
+		std::cout << "Please enter app name: ";
+		std::cin >> appname;
+
+		system((depPath + "adb shell pm list packages -3 \"| cut -f 2 -d \":\"| grep \"" + appname + '\"' + (std::string)"> /sdcard/del.txt").c_str());
+		system((depPath + "adb pull /sdcard/del.txt > nul & adb shell rm -rf /sdcard/del.txt").c_str());
+
+		std::ifstream file("dependencies/del.txt");
+		if (file.is_open())
+			file >> com;
+		system((depPath + "adb uninstall " + com).c_str());
+		file.close();
+		return 0;
+	}
+	return -1;
 }
