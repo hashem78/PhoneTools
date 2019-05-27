@@ -12,12 +12,15 @@ public:
 
 	int adbpush();
 	int adbpull();
-
-	int adblistpackages();
-	int adbinstall();
 	int adbinstallbatch();
 	int adbinstallsingle();
 	int adbuninstall();
-	
+	int adbshowuserapps();
+	int adbshowsystemapps();
+	int adbshowallapps();
+
+	int adblistapps();//menu
+	int adbinstall();//menu
+
 };
 #endif
