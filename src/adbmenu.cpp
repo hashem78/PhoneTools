@@ -29,10 +29,10 @@ void AdbMenu::Commands(int x)
 	case 4:
 		adbuninstall();
 		break;
-	case 6:
+	case 5:
 		adblistapps();
 		break;
-	case 7:
+	case 6:
 		adbrebootoptions();
 		break;
 	}

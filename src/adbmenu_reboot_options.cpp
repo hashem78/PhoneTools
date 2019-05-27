@@ -1,13 +1,13 @@
 #include "include/menus/adbmenu_reboot_options.h"
 #include "include/menus/adbmenu.h"
 
-AdbMenu M;
 AdbMenuRebootOptions::AdbMenuRebootOptions()
 {
 	elements = {"Normal reboot","Soft reboot","Reboot to recovery","Reboot to bootloader"};
 }
 void AdbMenuRebootOptions::Commands(int x)
 {
+	AdbMenu M;
 	switch (x)
 	{
 	case 1:

@@ -2,7 +2,6 @@
 #define ADBMENU_REBOOT_OPTIONS
 
 #include "../menu.h"
-
 class AdbMenuRebootOptions : public Menu
 {
 public:
