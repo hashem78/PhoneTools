@@ -9,4 +9,5 @@ int main()
 	printMenu(*p);
 
 	delete p;
+	//system("cd dependencies & adb push");
 }
