@@ -4,7 +4,6 @@
 #include "include/menus/adbmenu_reboot_options.h"
 #include "include/checkdependencies.h"
 #include <iostream>
-#include <filesystem>
 #include <fstream>
 
 int state = checkd();
@@ -24,13 +23,13 @@ void AdbMenu::Commands(int x)
 		adbpull();
 		break;
 	case 3:
-		adbinstall();
+		adbinstallmenu();
 		break;
 	case 4:
 		adbuninstall();
 		break;
 	case 5:
-		adblistapps();
+		adblistappsmenu();
 		break;
 	case 6:
 		adbrebootoptions();
@@ -80,53 +79,6 @@ int AdbMenu::adbpull()
 	}
 	return -1;
 }
-int AdbMenu::adbinstall()
-{
-	AdbInstallMenu M;
-	printMenu(M);
-	return 0;
-}
-int AdbMenu::adbinstallbatch()
-{
-	if (state == 0) {
-		system("CLS");
-		std::string path_on_pc;
-		std::string c = "adb install -r ";
-		std::cout << "Please enter path of folder to install apks from: ";
-		std::cin >> path_on_pc;
-		std::cout << '\n';
-		for (const auto& entry : std::filesystem::directory_iterator(path_on_pc))
-		{
-			std::cout << "Installing: " << entry.path().generic_string() << '\n';
-			system((depPath + c + entry.path().generic_string()).c_str());
-			//std::cout << entry.path().generic_string() << std::endl;
-		}
-
-		return 0;
-	}
-
-	return -1;
-
-}
-int AdbMenu::adbinstallsingle()
-{
-	if (state == 0) {
-		system("CLS");
-		std::string path_on_pc;
-		std::string c = "adb install ";
-		std::cout << "Please enter path of apk: ";
-		std::cin >> path_on_pc;
-		std::cout << '\n';
-
-		system((depPath + c + path_on_pc).c_str());
-
-
-		return 0;
-	}
-
-	return -1;
-
-}
 int AdbMenu::adbuninstall()
 {
 	if (state == 0) {
@@ -149,40 +101,13 @@ int AdbMenu::adbuninstall()
 	return -1;
 }
 
-int AdbMenu::adblistapps()
+int AdbMenu::adblistappsmenu()
 {
 	AdbMenuListApps M;
 	printMenu(M);
 	return 0;
 }
-int AdbMenu::adbshowuserapps()
-{
-	if (state == 0)
-	{
 
-		system((depPath+ "adb shell pm list packages -3 \"| cut -f 2 -d \":\"").c_str());
-		return 0;
-	}
-	return -1;
-}
-int AdbMenu::adbshowsystemapps()
-{
-	if (state == 0)
-	{
-		system((depPath + "adb shell pm list packages -s \"| cut -f 2 -d \":\"").c_str());
-		return 0;
-	}
-	return -1;
-}
-int AdbMenu::adbshowallapps()
-{
-	if (state == 0)
-	{
-		system((depPath + "adb shell pm list packages \"| cut -f 2 -d \":\"").c_str());
-		return 0;
-	}
-	return -1;
-}
 int AdbMenu::adbrebootoptions()
 {
 	AdbMenuRebootOptions M;
@@ -190,43 +115,9 @@ int AdbMenu::adbrebootoptions()
 
 	return 0;
 }
-int AdbMenu::adbreboot()
+int AdbMenu::adbinstallmenu()
 {
-	if (state == 0)
-	{
-		system((depPath + "adb reboot").c_str());
-		return 0;
-	}
-
-	return -1;
-}
-int AdbMenu::adbsoftreboot()
-{
-	if (state == 0)
-	{
-		system((depPath + "adb reboot").c_str());
-		return 0;
-	}
-
-	return -1;
-}
-int AdbMenu::adbrebootrecovery()
-{
-	if (state == 0)
-	{
-		system((depPath + "adb reboot recovery").c_str());
-		return 0;
-	}
-
-	return -1;
-}
-int AdbMenu::adbrebootbootloader()
-{
-	if (state == 0)
-	{
-		system((depPath + "adb reboot booloader").c_str());
-		return 0;
-	}
-
-	return -1;
+	AdbInstallMenu M;
+	printMenu(M);
+	return 0;
 }

@@ -12,20 +12,12 @@ public:
 
 	int adbpush();
 	int adbpull();
-	int adbinstallbatch();
-	int adbinstallsingle();
 	int adbuninstall();
-	int adbshowuserapps();
-	int adbshowsystemapps();
-	int adbshowallapps();
-	int adbreboot();
-	int adbsoftreboot();
-	int adbrebootrecovery();
-	int adbrebootbootloader();
+
 
 	int adbrebootoptions();//menu
-	int adblistapps();//menu
-	int adbinstall();//menu
+	int adblistappsmenu();//menu
+	int adbinstallmenu();//menu
 
 };
 #endif

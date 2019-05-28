@@ -7,17 +7,44 @@ AdbMenuListApps::AdbMenuListApps()
 }
 void AdbMenuListApps::Commands(int x)
 {
-	AdbMenu M;
 	switch (x)
 	{
 	case 1:
-		M.adbshowuserapps();
+		adbshowuserapps();
 		break;
 	case 2:
-		M.adbshowsystemapps();
+		adbshowsystemapps();
 		break;
 	case 3:
-		M.adbshowallapps();
+		adbshowallapps();
 		break;
 	}
+}
+int adbshowuserapps()
+{
+	if (state == 0)
+	{
+
+		system((depPath + "adb shell pm list packages -3 \"| cut -f 2 -d \":\"").c_str());
+		return 0;
+	}
+	return -1;
+}
+int adbshowsystemapps()
+{
+	if (state == 0)
+	{
+		system((depPath + "adb shell pm list packages -s \"| cut -f 2 -d \":\"").c_str());
+		return 0;
+	}
+	return -1;
+}
+int adbshowallapps()
+{
+	if (state == 0)
+	{
+		system((depPath + "adb shell pm list packages \"| cut -f 2 -d \":\"").c_str());
+		return 0;
+	}
+	return -1;
 }

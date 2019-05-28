@@ -8,5 +8,9 @@ public:
 	AdbMenuRebootOptions();
 	void Commands(int);
 };
+int adbreboot();
+int adbsoftreboot();
+int adbrebootrecovery();
+int adbrebootbootloader();
 
 #endif // !ADBMENU_REBOOT_OPTIONS

@@ -7,20 +7,59 @@ AdbMenuRebootOptions::AdbMenuRebootOptions()
 }
 void AdbMenuRebootOptions::Commands(int x)
 {
-	AdbMenu M;
 	switch (x)
 	{
 	case 1:
-		M.adbreboot();
+		adbreboot();
 		break;
 	case 2:
-		M.adbsoftreboot();
+		adbsoftreboot();
 		break;
 	case 3:
-		M.adbrebootrecovery();
+		adbrebootrecovery();
 		break;
 	case 4:
-		M.adbrebootbootloader();
+		adbrebootbootloader();
 		break;
 	}
+}
+int adbreboot()
+{
+	if (state == 0)
+	{
+		system((depPath + "adb reboot").c_str());
+		return 0;
+	}
+
+	return -1;
+}
+int adbsoftreboot()
+{
+	if (state == 0)
+	{
+		system((depPath + "adb reboot").c_str());
+		return 0;
+	}
+
+	return -1;
+}
+int adbrebootrecovery()
+{
+	if (state == 0)
+	{
+		system((depPath + "adb reboot recovery").c_str());
+		return 0;
+	}
+
+	return -1;
+}
+int adbrebootbootloader()
+{
+	if (state == 0)
+	{
+		system((depPath + "adb reboot booloader").c_str());
+		return 0;
+	}
+
+	return -1;
 }

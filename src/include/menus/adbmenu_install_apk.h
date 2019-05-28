@@ -9,5 +9,7 @@ public:
 	AdbInstallMenu();
 	void Commands(int);
 };
+int adbinstallbatch();
+int adbinstallsingle();
 
 #endif

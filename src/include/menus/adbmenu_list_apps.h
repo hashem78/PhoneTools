@@ -8,5 +8,7 @@ public:
 	AdbMenuListApps();
 	void Commands(int);
 };
-
+int adbshowuserapps();
+int adbshowsystemapps();
+int adbshowallapps();
 #endif 
