@@ -1,5 +1,4 @@
-#ifndef MENU_H
-#define MENU_H
+#pragma once
 
 #include <vector>
 #include <string>
@@ -13,5 +12,3 @@ public:
 	friend void printMenu(Menu &);
 	virtual void Commands(int)=0;
 };
-
-#endif

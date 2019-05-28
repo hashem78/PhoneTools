@@ -1,5 +1,4 @@
-#ifndef ADBMENU_LIST_PACKAGES
-#define ADBMENU_LIST_PACKAGES
+#pragma once
 
 #include "../menu.h"
 class AdbMenuListApps :public Menu
@@ -11,4 +10,4 @@ public:
 int adbshowuserapps();
 int adbshowsystemapps();
 int adbshowallapps();
-#endif 
+ 

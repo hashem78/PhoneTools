@@ -1,5 +1,5 @@
-#ifndef MAIN_MENU_H
-#define MAIN_MENU_H
+#pragma once
+
 #include "../menu.h"
 
 class MainMenu : public Menu
@@ -8,4 +8,3 @@ public:
 	MainMenu();
 	void Commands(int);
 };
-#endif

@@ -1,6 +1,4 @@
-#ifndef ADB_MENU_INSTALL
-#define ADB_MENU_INSTALL
-
+#pragma once
 
 #include "../menu.h"
 class AdbInstallMenu :public Menu
@@ -11,5 +9,3 @@ public:
 };
 int adbinstallbatch();
 int adbinstallsingle();
-
-#endif

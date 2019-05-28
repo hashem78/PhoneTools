@@ -1,5 +1,4 @@
-#ifndef ADBMENU_REBOOT_OPTIONS
-#define ADBMENU_REBOOT_OPTIONS
+#pragma once
 
 #include "../menu.h"
 class AdbMenuRebootOptions : public Menu
@@ -12,5 +11,3 @@ int adbreboot();
 int adbsoftreboot();
 int adbrebootrecovery();
 int adbrebootbootloader();
-
-#endif // !ADBMENU_REBOOT_OPTIONS

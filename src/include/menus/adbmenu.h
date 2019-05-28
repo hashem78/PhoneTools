@@ -1,5 +1,5 @@
-#ifndef ADB_MENU_H
-#define ADB_MENU_H
+#pragma once
+
 #include "../menu.h"
 
 extern int state;
@@ -20,4 +20,3 @@ public:
 	int adbinstallmenu();//menu
 
 };
-#endif
