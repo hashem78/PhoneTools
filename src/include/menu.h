@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 
+int getOption(int);
 class Menu
 {
 protected:

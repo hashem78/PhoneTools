@@ -5,13 +5,13 @@
 
 int option;
 
-int getOption()
+int getOption(int elsize)
 {
 	std::cout << "Enter choice: ";
 	std::cin >> option;
 	std::cout << '\n';
 
-	if (std::cin.good())
+	if (std::cin.good() && option >= 0 && option <= elsize)
 		return 0;
 	else {
 		std::cin.clear();
@@ -27,7 +27,8 @@ void printMenu(Menu &M)
 	for (auto x : M.elements)
 		std::cout << '(' << counter++ << ')' << ' ' << x << '\n';
 
-	while (getOption() != 0)
+	while (getOption(M.elements.size()) != 0)
 		std::cout << "Wrong choice entered! please choose another.\n";
+
 	M.Commands(option);
 }

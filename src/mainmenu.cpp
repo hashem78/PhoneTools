@@ -1,5 +1,6 @@
 #include "include/menus/mainmenu.h"
 #include "include/menus/adbmenu.h"
+#include <iostream>
 MainMenu::MainMenu()
 {
 	this->elements = { "Adb options","Fastboot options" };
