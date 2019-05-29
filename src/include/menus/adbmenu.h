@@ -13,7 +13,7 @@ public:
 	int adbpush();
 	int adbpull();
 	int adbuninstall();
-
+	int adbscreenrecord();
 
 	int adbrebootoptions();//menu
 	int adblistappsmenu();//menu

@@ -1,16 +1,19 @@
+#define _CRT_SECURE_NO_WARNINGS //visual studio ass thanks stackoverflow <3
 #include "include/menus/adbmenu.h"
 #include "include/menus/adbmenu_install_apk.h"
 #include "include/menus/adbmenu_list_apps.h"
 #include "include/menus/adbmenu_reboot_options.h"
 #include "include/checkdependencies.h"
+#include <chrono>
 #include <iostream>
+#include <algorithm>
 #include <fstream>
 
 int state = checkd();
 std::string depPath = "cd dependencies & ";
 AdbMenu::AdbMenu()
 {
-	elements = { "Adb push","Adb pull","Install app","Uninstall App","List apps","Reboot options" };
+	elements = { "Adb push","Adb pull","Install app","Uninstall App","List apps","Screen record","Reboot options" };
 }
 void AdbMenu::Commands(int x)
 {
@@ -32,6 +35,9 @@ void AdbMenu::Commands(int x)
 		adblistappsmenu();
 		break;
 	case 6:
+		adbscreenrecord();
+		break;
+	case 7:
 		adbrebootoptions();
 		break;
 	}
@@ -120,4 +126,77 @@ int AdbMenu::adbinstallmenu()
 	AdbInstallMenu M;
 	printMenu(M);
 	return 0;
+}
+int AdbMenu::adbscreenrecord()
+{
+	system("CLS");
+	struct recops
+	{
+		int height, width;
+		int length;
+		long bitrate;
+		recops(int h=720, int w=1280, int l=180,long b = 4000000)
+		{
+			if (h == 0)
+				height = 720;
+			else
+				height = h;
+			if (w == 0)
+				width = 1280;
+			else
+				width = w;
+			if (l == 0)
+				length = 180;
+			else
+				length = l;
+
+			if (b == 0)
+				bitrate = 4000000;
+			else
+				bitrate = b;
+		}
+	};
+	int a, b, c, d;
+	std::cout << "Please enter details asked, enter 0 for default values\n";
+	std::cout << "Enter recording height: ";
+	std::cin >> a;
+	std::cout << "\nEnter recording width: ";
+	std::cin >> b;
+	std::cout << "\nEnter recording length(seconds): ";
+	std::cin >> c;
+	std::cout << "\nEnter recording bitrate: ";
+	std::cin >> d;
+	recops options(a, b, c, d);
+	std::string fileName;
+
+	auto timenow = std::chrono::system_clock::now();
+	time_t currt = std::chrono::system_clock::to_time_t(timenow);
+	fileName = ctime(&currt);
+	fileName[fileName.size() - 1] = '4'; //these lines idk why but filename wasn't getting concatinated so i improvised :P
+	fileName[fileName.size() - 2] = 'p';
+	fileName[fileName.size() - 3] = 'm';
+	fileName[fileName.size() - 4] = '.';
+
+
+
+	std::replace(fileName.begin(),fileName.end(),' ','_');
+	std::replace(fileName.begin(),fileName.end(),':','-');//NO FOOKN ILLEGAL CHARS
+
+	std::string com = "adb shell screenrecord --size "
+		+ std::to_string(options.width)
+		+ "x" + std::to_string(options.height)
+		+ " --bit-rate " + std::to_string(options.bitrate)
+		+ " --time-limit " + std::to_string(options.length)
+		+ " /sdcard/" + fileName;
+	std::cout << "Recording...\n";
+	system((depPath +com ).c_str());
+	std::cout << "Enter path on pc: ";
+	std::string path_on_pc;
+	std::cin >> path_on_pc;
+	std::cout << '\n';
+	system ((depPath + "adb pull /sdcard/" + fileName + ' ' + path_on_pc).c_str());
+
+	return 0;
+
+
 }
