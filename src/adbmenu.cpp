@@ -23,7 +23,7 @@ void AdbMenu::Commands(int x)
 		adbpush();
 		break;
 	case 2:
-		adbpull();
+		adbpull("","");
 		break;
 	case 3:
 		adbinstallmenu();
@@ -64,20 +64,22 @@ int AdbMenu::adbpush()
 	}
 	return -1;
 }
-int AdbMenu::adbpull()
+int AdbMenu::adbpull(std::string path_on_pc="", std::string path_on_device="")
 {
 	system("CLS");
 
-	std::string path_on_pc;
-	std::string path_on_device;
+	//std::string path_on_pc;
+	//td::string path_on_device;
 
-	std::cout << "Please enter path on device: ";
-	std::cin >> path_on_device;
-	std::cout << '\n';
-	std::cout << "Please enter path on PC: ";
-	std::cin >> path_on_pc;
-	std::cout << '\n';
-
+	if (path_on_device != "" && path_on_device != "")
+	{
+		std::cout << "Please enter path on device: ";
+		std::cin >> path_on_device;
+		std::cout << '\n';
+		std::cout << "Please enter path on PC: ";
+		std::cin >> path_on_pc;
+		std::cout << '\n';
+	}
 	if (state == 0)
 	{
 		system((depPath + "adb pull " + path_on_device + " " + path_on_pc).c_str());
@@ -135,7 +137,7 @@ int AdbMenu::adbscreenrecord()
 		int height, width;
 		int length;
 		long bitrate;
-		recops(int h=720, int w=1280, int l=180,long b = 4000000)
+		recops(int h = 720, int w = 1280, int l = 180, long b = 4000000)
 		{
 			if (h == 0)
 				height = 720;
@@ -179,8 +181,8 @@ int AdbMenu::adbscreenrecord()
 
 
 
-	std::replace(fileName.begin(),fileName.end(),' ','_');
-	std::replace(fileName.begin(),fileName.end(),':','-');//NO FOOKN ILLEGAL CHARS
+	std::replace(fileName.begin(), fileName.end(), ' ', '_');
+	std::replace(fileName.begin(), fileName.end(), ':', '-');//NO FOOKN ILLEGAL CHARS
 
 	std::string com = "adb shell screenrecord --size "
 		+ std::to_string(options.width)
@@ -189,14 +191,12 @@ int AdbMenu::adbscreenrecord()
 		+ " --time-limit " + std::to_string(options.length)
 		+ " /sdcard/" + fileName;
 	std::cout << "Recording...\n";
-	system((depPath +com ).c_str());
+	system((depPath + com).c_str());
 	std::cout << "Enter path on pc: ";
 	std::string path_on_pc;
 	std::cin >> path_on_pc;
 	std::cout << '\n';
-	system ((depPath + "adb pull /sdcard/" + fileName + ' ' + path_on_pc).c_str());
+	adbpull("/sdcard/"+fileName,path_on_pc);
 
 	return 0;
-
-
 }

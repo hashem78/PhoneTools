@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include<chrono>
+#include <thread>
 
 int option;
 
@@ -24,11 +26,18 @@ void printMenu(Menu &M)
 	system("CLS");
 	
 	int counter = 1;
+
 	for (auto x : M.elements)
 		std::cout << '(' << counter++ << ')' << ' ' << x << '\n';
+	 
 
 	while (getOption(M.elements.size()) != 0)
+	{
 		std::cout << "Wrong choice entered! please choose another.\n";
-
+		std::chrono::seconds time_to_sleep(1); //stackoverflow <3
+		std::this_thread::sleep_for(time_to_sleep);
+		printMenu(M);
+	}
 	M.Commands(option);
+	
 }
