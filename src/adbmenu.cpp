@@ -64,14 +64,11 @@ int AdbMenu::adbpush()
 	}
 	return -1;
 }
-int AdbMenu::adbpull(std::string path_on_pc="", std::string path_on_device="")
+int AdbMenu::adbpull(std::string path_on_device="", std::string path_on_pc="")
 {
 	system("CLS");
 
-	//std::string path_on_pc;
-	//td::string path_on_device;
-
-	if (path_on_device != "" && path_on_pc != "")
+	if (path_on_device == "" && path_on_pc == "")
 	{
 		std::cout << "Please enter path on device: ";
 		std::cin >> path_on_device;
