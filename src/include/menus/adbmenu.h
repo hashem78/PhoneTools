@@ -11,7 +11,7 @@ public:
 	void Commands(int);
 
 	int adbpush();
-	int adbpull(std::string,std::string);
+	int adbpull(std::string="",std::string="");
 	int adbuninstall();
 	int adbscreenrecord();
 

@@ -23,7 +23,7 @@ void AdbMenu::Commands(int x)
 		adbpush();
 		break;
 	case 2:
-		adbpull("","");
+		adbpull();
 		break;
 	case 3:
 		adbinstallmenu();
@@ -64,7 +64,7 @@ int AdbMenu::adbpush()
 	}
 	return -1;
 }
-int AdbMenu::adbpull(std::string path_on_device="", std::string path_on_pc="")
+int AdbMenu::adbpull(std::string path_on_device, std::string path_on_pc)
 {
 	system("CLS");
 
