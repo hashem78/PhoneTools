@@ -9,6 +9,6 @@ class Menu
 protected:
 	std::vector<std::string> elements;
 public:
-	friend void printMenu(Menu &);
+	void show();
 	virtual void Commands(int)=0;
 };

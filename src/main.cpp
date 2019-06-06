@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 	Menu* p = new MainMenu;
-	printMenu(*p);
+	p->show();
 
 	delete p;
 }

@@ -21,23 +21,22 @@ int getOption(int elsize)
 		return -1;
 	}
 }
-void printMenu(Menu &M)
+void Menu::show()
 {
 	system("CLS");
 	
 	int counter = 1;
 
-	for (auto x : M.elements)
+	for (auto x : elements)
 		std::cout << '(' << counter++ << ')' << ' ' << x << '\n';
 	 
 
-	while (getOption(M.elements.size()) != 0)
+	while (getOption(elements.size()) != 0)
 	{
 		std::cout << "Wrong choice entered! please choose another.\n";
 		std::chrono::seconds time_to_sleep(1); //stackoverflow <3
 		std::this_thread::sleep_for(time_to_sleep);
-		printMenu(M);
+		this->show();
 	}
-	M.Commands(option);
-	
+	Commands(option);
 }

@@ -11,7 +11,7 @@ void MainMenu::Commands(int x)
 	switch (x) 
 	{
 	case 1:
-		printMenu(AdbOptions);
+		AdbOptions.show();
 		break;
 	case 2:
 		break;

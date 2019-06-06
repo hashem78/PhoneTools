@@ -71,7 +71,7 @@ int AdbMenu::adbpull(std::string path_on_pc="", std::string path_on_device="")
 	//std::string path_on_pc;
 	//td::string path_on_device;
 
-	if (path_on_device != "" && path_on_device != "")
+	if (path_on_device != "" && path_on_pc != "")
 	{
 		std::cout << "Please enter path on device: ";
 		std::cin >> path_on_device;
@@ -112,21 +112,23 @@ int AdbMenu::adbuninstall()
 int AdbMenu::adblistappsmenu()
 {
 	AdbMenuListApps M;
-	printMenu(M);
+	M.show();
+
 	return 0;
 }
 
 int AdbMenu::adbrebootoptions()
 {
 	AdbMenuRebootOptions M;
-	printMenu(M);
+	M.show();
 
 	return 0;
 }
 int AdbMenu::adbinstallmenu()
 {
 	AdbInstallMenu M;
-	printMenu(M);
+	M.show();
+
 	return 0;
 }
 int AdbMenu::adbscreenrecord()
