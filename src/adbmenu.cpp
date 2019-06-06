@@ -15,6 +15,10 @@ AdbMenu::AdbMenu()
 {
 	elements = { "Adb push","Adb pull","Install app","Uninstall App","List apps","Screen record","Reboot options" };
 }
+void AdbMenu::startScreen()
+{
+	std::cout << "///Adb Options///\n";
+}
 void AdbMenu::Commands(int x)
 {
 	switch (x)

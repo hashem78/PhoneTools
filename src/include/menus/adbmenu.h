@@ -9,7 +9,7 @@ class AdbMenu : public Menu
 public:
 	AdbMenu();
 	void Commands(int);
-
+	void startScreen();
 	int adbpush();
 	int adbpull(std::string="",std::string="");
 	int adbuninstall();

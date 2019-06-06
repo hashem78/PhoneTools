@@ -6,5 +6,6 @@ class MainMenu : public Menu
 {
 public:
 	MainMenu();
+	void startScreen();
 	void Commands(int);
 };

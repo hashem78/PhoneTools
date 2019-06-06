@@ -5,6 +5,7 @@ class AdbMenuRebootOptions : public Menu
 {
 public:
 	AdbMenuRebootOptions();
+	void startScreen();
 	void Commands(int);
 };
 int adbreboot();

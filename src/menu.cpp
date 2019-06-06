@@ -30,7 +30,7 @@ int getOption(int elsize)
 int Menu::show()
 {
 	system("CLS");
-	
+	this->startScreen();
 	int counter = 1;
 
 	for (auto x : elements)

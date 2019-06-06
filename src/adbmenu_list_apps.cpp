@@ -1,5 +1,6 @@
 #include "include/menus/adbmenu_list_apps.h"
 #include "include/menus/adbmenu.h"
+#include <iostream>
 
 AdbMenuListApps::AdbMenuListApps()
 {
@@ -19,6 +20,10 @@ void AdbMenuListApps::Commands(int x)
 		adbshowallapps();
 		break;
 	}
+}
+void AdbMenuListApps::startScreen()
+{
+	std::cout << "///List Apps///\n";
 }
 int adbshowuserapps()
 {

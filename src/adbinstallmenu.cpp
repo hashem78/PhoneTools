@@ -20,6 +20,10 @@ void AdbInstallMenu::Commands(int x)
 		break;
 	}
 }
+void AdbInstallMenu::startScreen()
+{
+	std::cout << "///Install Menu///\n";
+}
 int adbinstallbatch()
 {
 	if (state == 0) {

@@ -1,5 +1,6 @@
 #include "include/menus/adbmenu_reboot_options.h"
 #include "include/menus/adbmenu.h"
+#include <iostream>
 
 AdbMenuRebootOptions::AdbMenuRebootOptions()
 {
@@ -22,6 +23,10 @@ void AdbMenuRebootOptions::Commands(int x)
 		adbrebootbootloader();
 		break;
 	}
+}
+void AdbMenuRebootOptions::startScreen()
+{
+	std::cout << "///Reboot Options///";
 }
 int adbreboot()
 {

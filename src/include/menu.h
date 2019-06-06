@@ -13,6 +13,7 @@ protected:
 	std::vector<std::string> elements;
 public:
 	int show();
-	virtual void Commands(int)=0;
+	virtual void Commands(int) = 0;
+	virtual void startScreen() = 0;
 };
 extern std::unique_ptr <Menu> p;
