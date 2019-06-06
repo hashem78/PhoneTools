@@ -10,7 +10,6 @@
 int option;
 int level = 0;
 std::unique_ptr <Menu> p;
-
 int getOption(int elsize)
 {
 	std::cout << "Enter choice: ";
@@ -43,8 +42,7 @@ int Menu::show()
 	while (getOption(elements.size()) != 0)
 	{
 		std::cout << "Wrong choice entered! please choose another.\n";
-		std::chrono::seconds time_to_sleep(1); //stackoverflow <3
-		std::this_thread::sleep_for(time_to_sleep);
+		std::this_thread::sleep_for(std::chrono::seconds(1)); //stackoverflow <3
 		this->show();
 	}
 	if (option == -1) {
