@@ -7,11 +7,12 @@ MainMenu::MainMenu()
 }
 void MainMenu::Commands(int x)
 {
-	AdbMenu AdbOptions;
+	AdbMenu M;
 	switch (x) 
 	{
 	case 1:
-		AdbOptions.show();
+		if (!M.show())
+			return;
 		break;
 	case 2:
 		break;

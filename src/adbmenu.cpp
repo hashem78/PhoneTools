@@ -112,7 +112,7 @@ int AdbMenu::adbuninstall()
 int AdbMenu::adblistappsmenu()
 {
 	AdbMenuListApps M;
-	M.show();
+	if (!M.show())
 
 	return 0;
 }
@@ -120,15 +120,17 @@ int AdbMenu::adblistappsmenu()
 int AdbMenu::adbrebootoptions()
 {
 	AdbMenuRebootOptions M;
-	M.show();
+	if (!M.show())
+		return 0;
 
 	return 0;
 }
 int AdbMenu::adbinstallmenu()
 {
 	AdbInstallMenu M;
-	M.show();
 
+	if(!M.show())
+	   return 0;
 	return 0;
 }
 int AdbMenu::adbscreenrecord()
