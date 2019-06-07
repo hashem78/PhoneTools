@@ -6,5 +6,11 @@ public:
 	AdbMenuDebugging();
 	void startScreen();
 	void Commands(int x);
+	void takelogcat();
+	void takekmsg();
+	void takedmsg();
+	void takedump();
+
+
 };
-void takelogcat();
+

@@ -1,3 +1,4 @@
 Debug/
 .vs/
 dependecies/del.txt
+*.log
