@@ -33,7 +33,7 @@ int Menu::show()
 	this->startScreen();
 	int counter = 1;
 
-	for (auto x : elements)
+	for (const auto& x : elements)
 		std::cout << '(' << counter++ << ')' << ' ' << x << '\n';
 	std::cout << "(0) Exit\n";
 	if(level!=0)
