@@ -18,5 +18,7 @@ public:
 	int adbrebootoptions();//menu
 	int adblistappsmenu();//menu
 	int adbinstallmenu();//menu
+	int adbdebuggingmenu();//menu
+
 
 };

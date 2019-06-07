@@ -3,6 +3,7 @@
 #include "include/menus/adbmenu_install_apk.h"
 #include "include/menus/adbmenu_list_apps.h"
 #include "include/menus/adbmenu_reboot_options.h"
+#include "include/menus/adbmenu_debugging.h"
 #include "include/checkdependencies.h"
 #include <chrono>
 #include <iostream>
@@ -13,7 +14,7 @@ int state = checkd();
 std::string depPath = "cd dependencies & ";
 AdbMenu::AdbMenu()
 {
-	elements = { "Adb push","Adb pull","Install app","Uninstall App","List apps","Screen record","Reboot options" };
+	elements = { "Adb push","Adb pull","Install app","Uninstall App","List apps","Screen record","Reboot options","Debugging" };
 }
 void AdbMenu::startScreen()
 {
@@ -44,6 +45,8 @@ void AdbMenu::Commands(int x)
 	case 7:
 		adbrebootoptions();
 		break;
+	case 8:
+		adbdebuggingmenu();
 	}
 }
 
@@ -132,6 +135,13 @@ int AdbMenu::adbinstallmenu()
 
 	if(!M.show())
 	   return 0;
+	return 0;
+}
+int AdbMenu::adbdebuggingmenu()
+{
+	AdbMenuDebugging M;
+	if (!M.show())
+		return 0;
 	return 0;
 }
 int AdbMenu::adbscreenrecord()
