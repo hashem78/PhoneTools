@@ -34,15 +34,24 @@ int Menu::show()
 	int counter = 1;
 
 	for (const auto& x : elements)
-		std::cout << '(' << counter++ << ')' << ' ' << x << '\n';
+	{
+
+		std::cout << '(' << counter++ << ')' << ' ';
+		for (unsigned int i = 0; i < x.size(); i++) {
+			std::cout << x[i];
+			std::this_thread::sleep_for(std::chrono::milliseconds(30));
+		}
+		std::cout << '\n';
+		std::this_thread::sleep_for(std::chrono::milliseconds(30));
+	}
 	std::cout << "(0) Exit\n";
-	if(level!=0)
-	std::cout << "(-1) Back\n";
+	if (level != 0)
+		std::cout << "(-1) Back\n";
 
 	while (getOption(elements.size()) != 0)
 	{
 		std::cout << "Wrong choice entered! please choose another.\n";
-		std::this_thread::sleep_for(std::chrono::seconds(1)); //stackoverflow <3
+		std::this_thread::sleep_for(std::chrono::seconds(1)); //bep bop
 		this->show();
 	}
 	if (option == -1) {
