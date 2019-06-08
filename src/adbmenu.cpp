@@ -5,6 +5,7 @@
 #include "include/menus/adbmenu_reboot_options.h"
 #include "include/menus/adbmenu_debugging.h"
 #include "include/checkdependencies.h"
+#include "include/directory_handler.h"
 #include <chrono>
 #include <iostream>
 #include <algorithm>
@@ -14,7 +15,7 @@ int state = checkd();
 std::string depPath = "cd dependencies & ";
 AdbMenu::AdbMenu()
 {
-	elements = { "Adb push","Adb pull","Install app","Uninstall App","List apps","Screen record","Reboot options","Debugging" };
+	elements = { "Adb push","Adb pull","Install app","Uninstall App","List apps","Screen record","Reboot options","Debugging","Navigate" };
 }
 void AdbMenu::startScreen()
 {
@@ -47,9 +48,15 @@ void AdbMenu::Commands(int x)
 		break;
 	case 8:
 		adbdebuggingmenu();
+	case 9:
+		adbnavigate();
 	}
 }
-
+void AdbMenu::adbnavigate()
+{
+	populate_pathlist("/");
+	showdir();
+}
 int AdbMenu::adbpush()
 {
 	system("CLS");

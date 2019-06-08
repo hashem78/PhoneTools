@@ -15,6 +15,8 @@ public:
 	int adbuninstall();
 	int adbscreenrecord();
 
+	void adbnavigate();
+
 	int adbrebootoptions();//menu
 	int adblistappsmenu();//menu
 	int adbinstallmenu();//menu

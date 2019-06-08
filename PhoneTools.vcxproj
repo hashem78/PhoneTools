@@ -161,11 +161,13 @@
     <ClCompile Include="src\adbmenu_list_apps.cpp" />
     <ClCompile Include="src\checkdependencies.cpp" />
     <ClCompile Include="src\adbmenu_reboot_options.cpp" />
+    <ClCompile Include="src\directory_handler.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mainmenu.cpp" />
     <ClCompile Include="src\menu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\include\directory_handler.h" />
     <ClInclude Include="src\include\menus\adbmenu.h" />
     <ClInclude Include="src\include\checkdependencies.h" />
     <ClInclude Include="src\include\menus\adbmenu_debugging.h" />
