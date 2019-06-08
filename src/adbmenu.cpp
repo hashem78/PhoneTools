@@ -55,7 +55,6 @@ void AdbMenu::Commands(int x)
 void AdbMenu::adbnavigate()
 {
 	populate_pathlist("/");
-	showdir();
 }
 int AdbMenu::adbpush()
 {

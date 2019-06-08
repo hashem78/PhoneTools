@@ -12,11 +12,13 @@ std::string depPath1 = "cd dependencies & ";
 std::map <int, std::string> pathlist;
 
 std::string lastPath = "";
-
+int level_offset = 0;
 void populate_pathlist(std::string dirName)
 {
+	pathlist.clear(); //clear previous path
 	if (state1 == 0)
 	{
+
 		system((depPath1 + "adb shell \"ls " + lastPath + dirName + " > /sdcard/pathlist.txt\"").c_str());
 		system((depPath1 + "adb pull /sdcard/pathlist.txt > nul").c_str());
 
@@ -27,34 +29,35 @@ void populate_pathlist(std::string dirName)
 			return;
 		}
 		std::string curPath = "";
-		int counter = 1;
 
-		pathlist.clear(); //clear previous path
-
+		int counter = 2;
+		pathlist[1] = ".";
 		while (std::getline(file, curPath))
 			pathlist[counter++] = curPath;
 
-		lastPath += dirName + "/"; // so you can go up a dir
-
-		showdir();
+		if (dirName != "/")//avoid duplicate first/
+			lastPath += dirName + "/";
+		else lastPath = "/";
 		std::cin.ignore();
 		std::cin.clear();
 		file.close();
-		system(("mode con: cols=30 lines=" + std::to_string(pathlist.size())).c_str());
+		system(("mode con: cols=40 lines=" + std::to_string(pathlist.size() + 15)).c_str());
+		showdir();
+
 	}
 }
 void showdir()
 {
+
 	system("CLS");
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	int choice;
 
 	std::cout.flush();
-	int counter = 1;
 	for (const auto& x : pathlist)
 	{
-		if(x.second.find('.') != std::string::npos)
-		   SetConsoleTextAttribute(hConsole, 10);
+		if (x.second.find('.') != std::string::npos)
+			SetConsoleTextAttribute(hConsole, 10);
 		else
 			SetConsoleTextAttribute(hConsole, 15);
 		std::cout << "(" << x.first << ")" << x.second << '\n';
@@ -62,12 +65,22 @@ void showdir()
 	std::cout << "\nEnter choice:";
 	std::cin >> choice;
 
+	if (choice == 1)
+	{
+		lastPath.erase(lastPath.find_last_of('/'));//remove last /
+		lastPath.erase(lastPath.find_last_of('/')); //remove last /something
+
+		populate_pathlist("");//empty so that lastpath can be used
+
+		return;
+	}
+
 	while (pathlist[choice].find('.') != std::string::npos) {
 		std::cout << pathlist[choice] << " is not a directory";
 		std::cout << "\nEnter another choice:";
 		std::cin >> choice;
 	}
 	populate_pathlist(pathlist[choice]);
-	
+
 
 }
