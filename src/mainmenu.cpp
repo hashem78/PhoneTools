@@ -14,13 +14,13 @@ void MainMenu::startScreen()
 	for (const auto& x : s)
 	{
 		std::cout << x;
-		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		std::this_thread::sleep_for(std::chrono::milliseconds(25));
 	}
 	std::cout << '\n';
 	for (const auto& x : s)
 	{
 		std::cout << '/';
-		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		std::this_thread::sleep_for(std::chrono::milliseconds(25));
 	}
 	std::cout << '\n';
 
