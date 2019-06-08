@@ -1,3 +1,29 @@
-100ANDRO
-Camera
-Facebook
+ADM
+CamScanner
+Color
+DCIM
+Download
+Facebook Messenger
+MidasOversea
+OpenHostsEditor
+PicsArt
+Pictures
+Playlists
+QTAudioEngine
+Recording
+SendAnywhere
+Subtitles
+Tencent
+Thu_Jun__6_21-09-30_2019
+Thu_Jun__6_21-11-15_2.mp4
+Thu_Jun__6_21-13-06_2.mp4
+Web Video Caster
+WhatsApp
+cleanmaster
+com.facebook.katana
+com.facebook.orca
+log.log
+log.txt
+path.txt
+pathlist.txt
+time4popcorn

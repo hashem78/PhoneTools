@@ -6,7 +6,7 @@
 #include <fstream>
 #include <iostream>
 #include <iomanip>
-
+#include <Windows.h>
 int state1 = checkd();
 std::string depPath1 = "cd dependencies & ";
 std::map <int, std::string> pathlist;
@@ -40,18 +40,25 @@ void populate_pathlist(std::string dirName)
 		std::cin.ignore();
 		std::cin.clear();
 		file.close();
+		system(("mode con: cols=30 lines=" + std::to_string(pathlist.size())).c_str());
 	}
 }
 void showdir()
 {
 	system("CLS");
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	int choice;
 
 	std::cout.flush();
 	int counter = 1;
 	for (const auto& x : pathlist)
+	{
+		if(x.second.find('.') != std::string::npos)
+		   SetConsoleTextAttribute(hConsole, 10);
+		else
+			SetConsoleTextAttribute(hConsole, 15);
 		std::cout << "(" << x.first << ")" << x.second << '\n';
-
+	}
 	std::cout << "\nEnter choice:";
 	std::cin >> choice;
 
