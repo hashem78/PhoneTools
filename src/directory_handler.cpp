@@ -133,22 +133,31 @@ void showdir()
 	std::cout << "\nEnter choice: ";
 	std::cin >> choice;
 
-	if (choice == 1)
+	if (isback(choice) == 0)
+		return;
+
+	//handle wrong choices
+	while (pathlist[choice].isDir == false) {
+		std::cout << pathlist[choice].name << " is not a directory";
+		std::cout << "\nEnter another choice:";
+		std::cin >> choice;
+		if (isback(choice) == 0)
+			break;
+	}
+	populate_pathlist(pathlist[choice].name);
+
+
+}
+int isback(const int &c)
+{
+	if (c == 1)
 	{
 		lastPath.erase(lastPath.find_last_of('/'));//remove last /
 		lastPath.erase(lastPath.find_last_of('/')); //remove last /something
 
 		populate_pathlist("");//empty so that lastpath can be used
 
-		return;
+		return 0;
 	}
-	//handle wrong choices
-	while (pathlist[choice].isDir == false) {
-		std::cout << pathlist[choice].name << " is not a directory";
-		std::cout << "\nEnter another choice:";
-		std::cin >> choice;
-	}
-	populate_pathlist(pathlist[choice].name);
-
-
+	return -1;
 }
