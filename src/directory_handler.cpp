@@ -120,6 +120,7 @@ void showdir()
 	int choice;
 
 	std::cout.flush();
+	
 	for (const auto& x : pathlist)
 	{
 		if (x.second.isDir == false)
@@ -128,7 +129,8 @@ void showdir()
 			SetConsoleTextAttribute(hConsole, 15);//actual console color change(white)
 		std::cout << "(" << x.first << ")" << x.second.name << '\n';
 	}
-	std::cout << "\nEnter choice:";
+	std::cout << "Current path: " << lastPath << '\n';
+	std::cout << "\nEnter choice: ";
 	std::cin >> choice;
 
 	if (choice == 1)

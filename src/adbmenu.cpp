@@ -54,7 +54,7 @@ void AdbMenu::Commands(int x)
 }
 void AdbMenu::adbnavigate()
 {
-	populate_pathlist("/");
+	populate_pathlist("/sdcard");
 }
 int AdbMenu::adbpush()
 {
