@@ -39,10 +39,10 @@ int Menu::show()
 		std::cout << '(' << counter++ << ')' << ' ';
 		for (unsigned int i = 0; i < x.size(); i++) {
 			std::cout << x[i];
-			std::this_thread::sleep_for(std::chrono::milliseconds(30));
+			std::this_thread::sleep_for(std::chrono::milliseconds(15));
 		}
 		std::cout << '\n';
-		std::this_thread::sleep_for(std::chrono::milliseconds(30));
+		std::this_thread::sleep_for(std::chrono::milliseconds(15));
 	}
 	std::cout << "(0) Exit\n";
 	if (level != 0)
