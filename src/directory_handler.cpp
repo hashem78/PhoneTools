@@ -13,6 +13,8 @@ std::string depPath1 = "cd dependencies & "; //path to adb
 std::map <int, pathlisttype> pathlist;//final map with sorted files and folders
 std::string lastPath = "";//global var to track paths
 
+
+int longest_string = 0, shortest_string = INT_MAX;
 void clean_and_sort()
 {
 	std::ifstream file("dependencies/pathlist.txt");
@@ -31,12 +33,22 @@ void clean_and_sort()
 			dirs[counter_even].name = curr;
 			dirs[counter_even].isDir = true;
 			counter_even += 2;
+			if (curr.length() > longest_string)
+				longest_string = curr.length();
+			if (curr.length() < shortest_string)
+				shortest_string = curr.length();
+
 		}
 		if (curr[0] == '-') {
 			curr = curr.substr(curr.find(':') + 4);
 			files[counter_odd].name = curr;
-			files[counter_even].isDir = false;
+			files[counter_odd].isDir = false;
 			counter_odd += 2;
+			if (curr.length() > longest_string)
+				longest_string = curr.length();
+			if (curr.length() < shortest_string)
+				shortest_string = curr.length();
+
 		}
 
 	}
@@ -83,7 +95,7 @@ void populate_pathlist(std::string dirName)
 		std::cin.ignore();
 		std::cin.clear();
 		file.close();
-		system(("mode con: cols=40 lines=" + std::to_string(pathlist.size() + 15)).c_str());
+		system(("mode con: cols="+std::to_string(longest_string+3) +"lines=" + std::to_string(pathlist.size()+5)).c_str());
 		showdir();
 
 	}
