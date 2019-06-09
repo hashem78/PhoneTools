@@ -1,35 +1,45 @@
 #include "include/directory_handler.h"
-#include "include/checkdependencies.h"
+#include "include/checkdependencies.h"//for checkd()
 
 #include <string>
 #include <map>
 #include <fstream>
 #include <iostream>
-#include <iomanip>
-#include <Windows.h>
-#include <sstream>
+#include <Windows.h> //for console colors
+
 int state1 = checkd();//check for deps
 std::string depPath1 = "cd dependencies & "; //path to adb
 std::map <int, pathlisttype> pathlist;//final map with sorted files and folders
 std::string lastPath = "";//global var to track paths
 
 
-int longest_string = 0, shortest_string = INT_MAX;
+int longest_string = 0, shortest_string = INT_MAX;//to set correct console witdh and height
+/*
+clean_and_sort()
+to separate directories from files properly
+
+uses std::map to hold directory and file names
+generates file numbers based on odd and even
+then merges both into pathlist
+
+if no files or folders are found the map is reordered
+
+*/
 void clean_and_sort()
 {
 	std::ifstream file("dependencies/pathlist.txt");
 	if (!file.is_open())
 		return;
-	std::map<int, pathlisttype> dirs;
-	std::map<int, pathlisttype> files;
+	std::map<int, pathlisttype> dirs;//holds directories
+	std::map<int, pathlisttype> files;//holds files
 	int counter_even = 2, counter_odd = 3;
-	std::string curr = "";
+	std::string curr = "";//to store current string being handled in loop
 
 	while (std::getline(file, curr))
 	{
 		if (curr[0] == 'd') {
 
-			curr = curr.substr(curr.find(':') + 4);
+			curr = curr.substr(curr.find(':') + 4);//ls -lL provides really good output here
 			dirs[counter_even].name = curr;
 			dirs[counter_even].isDir = true;
 			counter_even += 2;
@@ -52,9 +62,10 @@ void clean_and_sort()
 		}
 
 	}
-	pathlist[1].name = ".";
+	pathlist[1].name = ".";//add back a level to map
 	pathlist[1].isDir = true;
 
+	//merge
 	pathlist.merge(dirs);
 	pathlist.merge(files);
 
@@ -93,7 +104,7 @@ void populate_pathlist(std::string dirName)
 		if (dirName != "/")//avoid duplicate first/
 			lastPath += dirName + "/";
 		else lastPath = "/";
-		std::cin.ignore();
+		std::cin.ignore();//precautions
 		std::cin.clear();
 		file.close();
 		system(("mode con: cols="+std::to_string(longest_string+3) +"lines=" + std::to_string(pathlist.size()+5)).c_str());
@@ -105,16 +116,16 @@ void showdir()
 {
 
 	system("CLS");
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);//change console color
 	int choice;
 
 	std::cout.flush();
 	for (const auto& x : pathlist)
 	{
 		if (x.second.isDir == false)
-			SetConsoleTextAttribute(hConsole, 10);
+			SetConsoleTextAttribute(hConsole, 10);//actual console color change(green)
 		else
-			SetConsoleTextAttribute(hConsole, 15);
+			SetConsoleTextAttribute(hConsole, 15);//actual console color change(white)
 		std::cout << "(" << x.first << ")" << x.second.name << '\n';
 	}
 	std::cout << "\nEnter choice:";
@@ -129,7 +140,7 @@ void showdir()
 
 		return;
 	}
-
+	//handle wrong choices
 	while (pathlist[choice].isDir == false) {
 		std::cout << pathlist[choice].name << " is not a directory";
 		std::cout << "\nEnter another choice:";
