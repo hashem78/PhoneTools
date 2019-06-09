@@ -7,20 +7,67 @@
 #include <iostream>
 #include <iomanip>
 #include <Windows.h>
-int state1 = checkd();
-std::string depPath1 = "cd dependencies & ";
-std::map <int, std::string> pathlist;
+#include <sstream>
+int state1 = checkd();//check for deps
+std::string depPath1 = "cd dependencies & "; //path to adb
+std::map <int, pathlisttype> pathlist;//final map with sorted files and folders
+std::string lastPath = "";//global var to track paths
 
-std::string lastPath = "";
-int level_offset = 0;
+void clean_and_sort()
+{
+	std::ifstream file("dependencies/pathlist.txt");
+	if (!file.is_open())
+		return;
+	std::map<int, pathlisttype> dirs;
+	std::map<int, pathlisttype> files;
+	int counter_even = 2, counter_odd = 3;
+	std::string curr = "";
+
+	while (std::getline(file, curr))
+	{
+		if (curr[0] == 'd') {
+
+			curr = curr.substr(curr.find(':') + 4);
+			dirs[counter_even].name = curr;
+			dirs[counter_even].isDir = true;
+			counter_even += 2;
+		}
+		if (curr[0] == '-') {
+			curr = curr.substr(curr.find(':') + 4);
+			files[counter_odd].name = curr;
+			files[counter_even].isDir = false;
+			counter_odd += 2;
+		}
+
+	}
+	pathlist[1].name = ".";
+	pathlist[1].isDir = true;
+
+	pathlist.merge(dirs);
+	pathlist.merge(files);
+
+	if (dirs.empty() || files.empty())//if there were no files or dirs sort items correctly
+	{
+		int m = 1;
+		for (auto& x : pathlist)
+		{
+			auto nh = pathlist.extract(x.first); //again stackover flow for the rescue
+			nh.key() = m++;
+			pathlist.insert(std::move(nh));
+		}
+	}
+}
 void populate_pathlist(std::string dirName)
 {
 	pathlist.clear(); //clear previous path
 	if (state1 == 0)
 	{
 
-		system((depPath1 + "adb shell \"ls " + lastPath + dirName + " > /sdcard/pathlist.txt\"").c_str());
+		system((depPath1 + "adb shell \"ls -lL " + lastPath + dirName + " > /sdcard/pathlist.txt\"").c_str());
+		//system("PAUSE");
 		system((depPath1 + "adb pull /sdcard/pathlist.txt > nul").c_str());
+
+		clean_and_sort();
 
 		std::ifstream file("dependencies/pathlist.txt");
 		if (!file.is_open())
@@ -29,11 +76,6 @@ void populate_pathlist(std::string dirName)
 			return;
 		}
 		std::string curPath = "";
-
-		int counter = 2;
-		pathlist[1] = ".";
-		while (std::getline(file, curPath))
-			pathlist[counter++] = curPath;
 
 		if (dirName != "/")//avoid duplicate first/
 			lastPath += dirName + "/";
@@ -56,11 +98,11 @@ void showdir()
 	std::cout.flush();
 	for (const auto& x : pathlist)
 	{
-		if (x.second.find('.') != std::string::npos)
+		if (x.second.isDir == false)
 			SetConsoleTextAttribute(hConsole, 10);
 		else
 			SetConsoleTextAttribute(hConsole, 15);
-		std::cout << "(" << x.first << ")" << x.second << '\n';
+		std::cout << "(" << x.first << ")" << x.second.name << '\n';
 	}
 	std::cout << "\nEnter choice:";
 	std::cin >> choice;
@@ -75,12 +117,12 @@ void showdir()
 		return;
 	}
 
-	while (pathlist[choice].find('.') != std::string::npos) {
-		std::cout << pathlist[choice] << " is not a directory";
+	while (pathlist[choice].isDir == false) {
+		std::cout << pathlist[choice].name << " is not a directory";
 		std::cout << "\nEnter another choice:";
 		std::cin >> choice;
 	}
-	populate_pathlist(pathlist[choice]);
+	populate_pathlist(pathlist[choice].name);
 
 
 }
