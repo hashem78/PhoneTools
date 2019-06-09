@@ -68,6 +68,7 @@ void clean_and_sort()
 			pathlist.insert(std::move(nh));
 		}
 	}
+	file.close();
 }
 void populate_pathlist(std::string dirName)
 {
