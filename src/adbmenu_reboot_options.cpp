@@ -26,7 +26,7 @@ void AdbMenuRebootOptions::Commands(int x)
 }
 void AdbMenuRebootOptions::startScreen()
 {
-	std::cout << "///Reboot Options///";
+	std::cout << "///Reboot Options///\n";
 }
 int adbreboot()
 {
